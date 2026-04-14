@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Patient Information Leaflet (PIL) Printer</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+  <meta http-equiv="cache-control" content="max-age=0" />
+  <meta http-equiv="cache-control" content="no-cache" />
+  <meta http-equiv="expires" content="0" />
+  <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+  <meta http-equiv="pragma" content="no-cache" />
+  <!-- CSS start here -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <style>
+  body::before {
+    display: block;
+    content: '';
+    height: 60px;
+  }
+  
+  /* Custom focus outline color for form controls */
+  :root {
+    --bs-focus-ring-color: orange; /* Change the focus ring color */
+  }
+  
+  .form-control:focus, .form-select:focus, .form-check-input:focus {
+      border-color: orange !important; /* Change the border color */
+      box-shadow: 0 0 0 0.25rem rgba(255, 165, 0, 0.25) !important; /* Optional: Change the box shadow */
+  }
+  
+  .btn:focus {
+    box-shadow: 0 0 0 0 !important;
+  }
+  
+  #features {
+    background-image: url("img/vector4.jpg");
+    background-position: -350px -20px;
+    /*background-size: 25%;*/
+    /*background-repeat: no-repeat;*/
+    /*background-color: #4db5e5;*/
+  }
+  
+  #loadingIndicator {
+    display: none; /* Initially hidden */
+    font-size: 20px;
+    /*color: blue;*/
+    margin-top: 20px;
+  }
+  
+  .autocomplete-suggestions {
+    display: none;
+    border: 1px solid #ccc;
+    max-height: 150px;
+    overflow-y: auto;
+    /*position: absolute;*/
+    /*z-index: 1000;*/
+    background-color: white;
+  }
+  
+  #medicationInput:focus + .autocomplete-suggestions {
+    display: block;
+  }
+  
+  #medicationInput:not(:placeholder-shown) + .autocomplete-suggestions {
+    display: block;
+  }
+  
+  .autocomplete-suggestion {
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .autocomplete-suggestion:hover {
+    background-color: #eaeaea;
+  }
+  
+  .service-status {
+    font-size: 20px;
+    margin-top: 10px;
+  }
+  </style>
+  <!-- CSS end here -->
+</head>
+  <!-- Main container start here -->
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 fixed-top user-select-none">
+    <div class="container">
+      <a href="" class="navbar-brand">
+      <!--i class="bi bi-file-earmark-medical"></i-->
+      <!--i class="bi bi-filetype-pdf text-warning"></i-->
+      <span class="text-warning font-monospace fw-bold">PIL|</span>Patient Information Leaflet Printer</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+      <div class="collapse navbar-collapse" id="navmenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a href="#" class="nav-link text-white">Service Status</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link text-white">Learn</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link text-white">News</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link text-white">FAQs</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link text-warning">Report An Issue</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Showcase -->
+  <!--<section class="bg-dark text-light p-5 p-lg-0 pt-lg-5 text-center text-sm-start">-->
+  <!--  <div class="container">-->
+  <!--    <div class="d-sm-flex align-items-center justify-content-between">-->
+  <!--      <div>-->
+  <!--        <h1 class="user-select-none">Empowering Patients, <span class="text-warning">One Leaflet At A Time</span></h1>-->
+  <!--        <p class="lead my-4 user-select-none">-->
+  <!--          We believe that informed patients are empowered patients. Patient information leaflets-->
+  <!--          provide essential information, guidance, and support to help you navigate your health journey-->
+  <!--          safely and with confidence. Together, we’re transforming healthcare, one leaflet at a time.-->
+  <!--        </p>-->
+  <!--        <a href="#pilmerge" role="button" class="btn btn-light btn-lg rounded-0 link-dark">Get Started <span class="bi bi-chevron-right text-warning fw-bold"></span></a>-->
+  <!--      </div>-->
+  <!--      <img class="img-fluid w-75 d-sm-block" src="img/vector2.png" alt="">-->
+  <!--    </div>-->
+  <!--  </div>-->
+  <!--</section>-->
+  <!-- Features Section -->
+  <!--<section id="features" class="text-light p-5">-->
+  <!--  <div class="container">-->
+  <!--    <div class="d-md-flex justify-content-between align-items-center">-->
+  <!--      <h3 class="mb-3 mb-md-0">Sign Up For Our Newsletter</h3>-->
+        
+  <!--      <div class="input-group news-input">-->
+  <!--        <input type="text" class="form-control rounded-0" placeholder="Enter Email">-->
+  <!--        <button class="btn btn-dark btn-lg rounded-0 font-monospace fs-5" type="button">Button</button>-->
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--  </div>-->
+  <!--</section>-->
+  <!-- Boxes Section -->
+  <section id="pilmerge" class="py-5 user-select-none">
+    <div class="container">
+      <div class="row">
+        <div class="col-md"> <!--Change col-md to col-9 to then add a col-3 card next to it-->
+          <div class="card rounded-0 border-0 shadow-sm">
+            <div class="card-header bg-dark text-warning font-monospace rounded-0">
+              CHOOSE A MEDICATION
+            </div>
+            <div class="card-body">
+              <div class="form-group">
+              <input type="text" class="form-control form-control-lg rounded-0" id="medicationInput" placeholder="Start typing medication name..." autocomplete="off">
+                <div id="suggestions" class="autocomplete-suggestions"></div>
+              </div>
+              <div class="pt-3">
+                <button id="mergeAndPrint" class="btn btn-dark text-light rounded-0 font-monospace fs-5" disabled>MERGE</button>
+                <button id="clearList" class="btn btn-warning rounded-0 text-white font-monospace fs-5">CLEAR</button>
+                  <div id="loadingIndicator" class="text-dark font-monospace">Loading...</div>
+              </div>
+            </div>
+            <!--<div class="card-footer bg-light text-muted border-0 rounded-0">-->
+            <!--  INSERT TEXT HERE-->
+            <!--</div>-->
+          </div>
+        </div>
+        <!--<div class="col-3">-->
+        <!--  <div class="card rounded-0 border-0 shadow-sm">-->
+        <!--    <div class="card-header bg-dark text-warning font-monospace rounded-0">-->
+        <!--      SERVICE STATUS-->
+        <!--    </div>-->
+        <!--    <div class="card-body">-->
+                
+        <!--    </div>-->
+        <!--    <div class="card-footer bg-light text-muted border-0 rounded-0">-->
+              
+        <!--    </div>-->
+        <!--  </div>-->
+        <!--</div>-->
+      </div>
+    </div>
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-md">
+          <div class="card rounded-0 border-0 shadow-sm">
+            <div class="card-header bg-dark text-warning font-monospace rounded-0">
+              CURRENT MEDICATION(S) LIST
+            </div>
+            <div class="card-body">
+              <div class="form-group">
+                <ul id="selectedPdfList" class="list-group"></ul>
+            </div>
+            </div>
+            <!--<div class="card-footer bg-light text-muted border-0 rounded-0">-->
+            <!--  INSERT TEXT HERE-->
+            <!--</div>-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Javascript framework and plugins start here -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+  <script src="medicationNames.js"></script>
+  <script>
+  // PDF Merging
+  
+  const medications = Object.keys(pdfFiles).map(key => ({
+              value: key,
+              name: pdfFiles[key].name // Use the custom name from the pdfFiles object
+          }));
+  
+          const selectedFiles = [];
+          const maxFiles = 10; // Maximum number of PDFs allowed
+  
+          const medicationInput = document.getElementById('medicationInput');
+          const suggestionsContainer = document.getElementById('suggestions');
+          const mergeAndPrintButton = document.getElementById('mergeAndPrint');
+  
+          medicationInput.addEventListener('input', () => {
+              const query = medicationInput.value.toLowerCase();
+              suggestionsContainer.innerHTML = ''; // Clear previous suggestions
+  
+              if (query) {
+                  // Filter medications to only those that start with the query
+                  const filteredMedications = medications.filter(med => 
+                      med.name.toLowerCase().startsWith(query) && !selectedFiles.includes(med.value)
+                  );
+  
+                  filteredMedications.forEach(med => {
+                      const suggestionItem = document.createElement('div');
+                      suggestionItem.className = 'autocomplete-suggestion';
+                      suggestionItem.textContent = med.name;
+                      suggestionItem.onclick = () => addMedication (med.value, med.name);
+                      suggestionsContainer.appendChild(suggestionItem);
+                  });
+              }
+          });
+  
+          function addMedication(value, name) {
+              if (selectedFiles.length >= maxFiles) {
+                  alert("You have reached the maximum number of items in the list.");
+                  return;
+              }
+  
+              if (!selectedFiles.includes(value)) {
+                  selectedFiles.push(value);
+  
+                  // Create a list item with a hyperlink and an "X" button
+                  const listItem = document.createElement('li');
+                  listItem.className = 'list-group-item border-start-0 border-top-0 border-end-0 border-2 border-warning rounded-0'; // Add Bootstrap list-group-item class. Default: 'list-group-item'. Change to: 'list-group-item border-start-0 border-end-0 border-2 border-warning rounded-0'
+                  const link = document.createElement('a');
+                  link.className = 'text-dark text-decoration-none'; // Add Bootstrap class to element 'a'. NOT INCLUDED BY DEFAULT. ADD AFTER CHANGES
+                  link.href = pdfFiles[value].url; // Set the href to the PDF URL
+                  link.target = '_blank'; // Open in a new window
+                  link.textContent = name; // Set the link text to the user-friendly name
+                  listItem.appendChild(link); // Append the link to the list item
+  
+                  // Create the "X" button
+                  const removeButton = document.createElement('button');
+                  removeButton.className = 'btn btn-sm btn-warning rounded-0 text-white font-monospace fs-6'; // Add Bootstrap button classes. Default: 'btn btn-sm btn-danger'. Change to: 'btn btn-sm btn-warning rounded-0 text-white font-monospace'
+                  removeButton.textContent = 'REMOVE'; // Default: ' X'. Change to: 'REMOVE'
+                  removeButton.style.marginLeft = '10px'; // Add some space between the link and the button
+                  removeButton.onclick = () => {
+                      // Remove the PDF from the selectedFiles array
+                      selectedFiles.splice(selectedFiles.indexOf(value), 1);
+                      // Remove the list item from the display
+                      document.getElementById('selectedPdfList').removeChild(listItem);
+                      enableMergeAndPrintButton(); // Re-enable the button
+                  };
+  
+                  listItem.appendChild(removeButton); // Append the "X" button to the list item
+                  document.getElementById('selectedPdfList').appendChild(listItem); // Append the list item to the list
+  
+                  medicationInput.value = ''; // Clear input field
+                  suggestionsContainer.innerHTML = ''; // Clear suggestions
+                  enableMergeAndPrintButton(); // Enable the button
+              } else {
+                  alert('This PDF has already been added.');
+              }
+          }
+  
+          // Clear List button functionality
+          document.getElementById('clearList').addEventListener('click', () => {
+              selectedFiles.length = 0; // Clear the selected files array
+              document.getElementById('selectedPdfList').innerHTML = ''; // Clear the list display
+              enableMergeAndPrintButton(); // Re-enable the button
+          });
+  
+          function enableMergeAndPrintButton() {
+              if (selectedFiles.length > 0) {
+                  mergeAndPrintButton.disabled = false;
+              } else {
+                  mergeAndPrintButton.disabled = true;
+              }
+          }
+  
+          document.getElementById('mergeAndPrint').addEventListener('click', async () => {
+              mergeAndPrintButton.disabled = true; // Disable the button
+  
+              if (selectedFiles.length === 0) {
+                  alert('Please select at least one PDF file.');
+                  return;
+              }
+  
+              const loadingIndicator = document.getElementById('loadingIndicator');
+              loadingIndicator.style.display = 'block'; // Show loading indicator
+  
+              const pdfDocs = [];
+              const invalidPdfs = [];
+  
+              for (const file of selectedFiles) {
+                  try {
+                      const response = await fetch(pdfFiles[file].url);
+                      const arrayBuffer = await response.arrayBuffer();
+                      const pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer);
+                      pdfDocs.push(pdfDoc);
+                  } catch (error) {
+                      const pdfName = pdfFiles[file].name; // Get the user-friendly name of the PDF
+                      invalidPdfs.push(pdfName); // Add the user-friendly name to the list
+                  }
+              }
+  
+              if (invalidPdfs.length > 0) {
+                  const errorMessage = `Error loading PDFs: ${invalidPdfs.join(', ')}. Please check the PDF URLs and try again.`;
+                  alert(errorMessage);
+                  loadingIndicator.style.display = 'none'; // Hide loading indicator on error
+                  return;
+              }
+  
+              // Create a new PDF document
+              const mergedPdf = await PDFLib.PDFDocument.create();
+  
+              // Copy pages from each PDF document to the new document
+              for (const pdfDoc of pdfDocs) {
+                  const copiedPages = await mergedPdf.copyPages(pdfDoc, pdfDoc.getPageIndices());
+                  copiedPages.forEach((page) => mergedPdf.addPage(page));
+              }
+  
+              // Save the merged PDF
+              const mergedPdfFile = await mergedPdf.save();
+              const blob = new Blob([mergedPdfFile], { type: 'application/pdf' });
+              const url = URL.createObjectURL(blob);
+  
+              // Open the PDF in a new tab
+              window.open(url, '_blank');
+  
+              // Clean up
+              URL.revokeObjectURL(url);
+  
+              loadingIndicator.style.display = 'none'; // Hide loading indicator after merging
+          });
+  </script>
+  <!-- Javascript framework and plugins ends here -->
+</body>
+</html>
